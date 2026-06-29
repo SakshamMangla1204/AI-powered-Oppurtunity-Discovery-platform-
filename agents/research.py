@@ -1,6 +1,6 @@
 from tavily import TavilyClient
 from dotenv import load_dotenv
-from langchain_ollama import ChatOllama
+from langchain_groq import ChatGroq
 
 import os
 
@@ -12,8 +12,9 @@ tavily = TavilyClient(
     api_key=os.getenv("TAVILY_API_KEY")
 )
 
-llm = ChatOllama(
-    model="qwen3:8b",
+llm = ChatGroq(
+    model="llama-3.3-70b-versatile",
+    groq_api_key=os.getenv("GROQ_API_KEY"),
     temperature=0
 )
 
@@ -45,7 +46,7 @@ CONTENT:
 """
 
     print("Search completed.")
-    print("Sending information to Ollama...\n")
+    print("Sending information to Groq...\n")
 
     prompt = f"""
 You are a company research agent.
